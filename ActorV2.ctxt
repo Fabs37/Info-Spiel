@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ActorV2
+comment1.params=t
+comment1.target=void\ setTransparency(int)
+comment2.params=
+comment2.target=void\ hide()
+comment3.params=
+comment3.target=void\ show()
+numComments=4

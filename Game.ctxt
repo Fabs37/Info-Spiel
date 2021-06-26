@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Game
+comment1.params=
+comment1.target=Game()
+comment2.params=newHP
+comment2.target=void\ setHP(int)
+comment3.params=verschT
+comment3.target=boolean\ addTower(Tower)
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ prepare()
+numComments=6

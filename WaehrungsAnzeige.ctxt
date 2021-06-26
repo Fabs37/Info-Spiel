@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=WaehrungsAnzeige
+comment1.params=
+comment1.target=WaehrungsAnzeige()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=newMoney
+comment3.target=void\ setMoney(int)
+numComments=4

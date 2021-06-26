@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Map
+comment1.params=path
+comment1.target=Map(java.lang.String)
+comment2.params=path
+comment2.target=void\ setImg(java.lang.String)
+numComments=3
