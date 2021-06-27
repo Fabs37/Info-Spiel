@@ -2,12 +2,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 
 public class DisplayText extends ActorV2{    
-    public DisplayText(String txt, Font f, Color c, int width) {
-        super();
-        GreenfootImage img = new GreenfootImage(width, f.getSize());
+    GreenfootImage img;
+    String txt;
+
+    public DisplayText(String txt, Font f, int width) {
+        // super();
+        img = new GreenfootImage(128, 32);
         img.setFont(f);
-        img.setColor(c);
-        setImage(img);
+        // setImage(img);
         setText(txt);
     }
     public void act() {
@@ -15,9 +17,10 @@ public class DisplayText extends ActorV2{
     }
     
     public void setText(String newTxt) {
-        GreenfootImage img = getImage();
+        txt = newTxt;
         img.clear();
-        img.drawString(newTxt, 0, 0);
+        // img.drawImage(new GreenfootImage("GUI\\Herz32px_1.png"), 0, 0);
+        img.drawString(newTxt, 0, 16);
         setImage(img);
     }
 }
