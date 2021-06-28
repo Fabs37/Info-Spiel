@@ -2,6 +2,6 @@
 comment0.target=Map
 comment1.params=path\ validTowerPos\ virusPath
 comment1.target=Map(java.lang.String,\ java.lang.Boolean[][],\ int[][])
-comment2.params=path
-comment2.target=void\ setImg(java.lang.String)
+comment2.params=path\ validTowerPos\ virusPath
+comment2.target=void\ setMap(java.lang.String,\ java.lang.Boolean[][],\ int[][])
 numComments=3

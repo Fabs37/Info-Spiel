@@ -7,7 +7,11 @@ public abstract class Tower extends ActorV2{
     public Tower() {
         GreenfootImage img = getImage();
         img.scale(62, 62);
-        setImage(img);
+        setImage(img);    
+    }
+    
+    public void act() {
+        
     }
     
 }

@@ -2,8 +2,8 @@
 comment0.target=Game
 comment1.params=
 comment1.target=Game()
-comment2.params=newHP
-comment2.target=void\ setHP(int)
+comment2.params=deltaHP
+comment2.target=void\ changeHP(int)
 comment3.params=
 comment3.target=boolean\ addTower()
 comment4.params=

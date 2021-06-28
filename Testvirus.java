@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class Testvirus extends Virus
-{
-    
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+public class Testvirus extends Virus {
+    public Testvirus() {
+        super();
+        speed = 1;
+        damage = 15;
+    }   
 }
