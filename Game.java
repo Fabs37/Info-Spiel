@@ -9,7 +9,8 @@ public class Game extends World {
     private int hp; // Die Anzahl der Leben
     private int money; // Die Anzahl der Impfdosen (Währung)
     private int runde;
-    private WaehrungsAnzeige monCnt; // evtl. noch überarbeiten (zu DisplayText, wenn er funktioniert)
+    private ActorV2 moneyIcon; // Impfstoffsymbol in der Leiste oben
+    private DisplayText moneyAnz; // Der Text rechts von moneyIcon
     private DisplayText rundenAnz; // funktioniert nicht
     private Tower[][] placedTowers; // speichert, welche Türme wo plaziert wurden
     private Map map; // Hintergrundbild, speichert auch die validTowerPos und die Strecke der Viren
@@ -43,30 +44,32 @@ public class Game extends World {
             if (mouse != null) {
                 int x1 = mouse.getX() / twidth;
                 int y1 = (mouse.getY() / twidth) - 2; // Offset für die obere Leiste
-                System.out.println(Integer.toString(x1) + " " + Integer.toString(y1));
+                // System.out.println(Integer.toString(x1) + " " + Integer.toString(y1));
                 int x2 = (x1*twidth)+(twidth/2); // absolute Positionen für den Turm
                 int y2 = (y1*twidth)+(twidth/2) + 2*twidth;
-                if(x1 < 13 && y1 < 12 && x1 > -1 && y1 > -1 && this.map.validTowerPos[y1][x1]) {
-                    tower2place.setLocation(x2, y2);
-                    if(mouse.getButton() == 1 && placedTowers[y1][x1] == null) {
-                        switch (tower2place.getClass().getName()) {
-                            case "Testtower":
-                                placedTowers[y1][x1] = new Testtower();
-                                break;
+                if(x1 < 13 && y1 < 12 && x1 > -1 && y1 > -1) {
+                    if (this.map.validTowerPos[y1][x1]) {
+                        tower2place.setLocation(x2, y2);
+                        if(mouse.getButton() == 1 && placedTowers[y1][x1] == null) {
+                            switch (tower2place.getClass().getName()) {
+                                case "Testtower":
+                                    placedTowers[y1][x1] = new Testtower();
+                                    break;
                         
-                            default:
-                                placedTowers[y1][x1] = new Testtower();
-                                break;
+                                default:
+                                    placedTowers[y1][x1] = new Testtower();
+                                    break;
+                            }
+                            if(placedTowers[y1][x1].cost > this.money) {
+                                placedTowers[y1][x1] = null;
+                            } else {
+                                tower2place.hide();
+                                addObject(placedTowers[y1][x1], x2, y2);
+                                this.money -= placedTowers[y1][x1].cost;
+                                setTower = true;
+                            }
+                            // System.out.println("Turm plaziert: x=" + Integer.toString(x1) + ", y=" + Integer.toString(y1));
                         }
-                        if(placedTowers[y1][x1].cost > this.money) {
-                            placedTowers[y1][x1] = null;
-                        } else {
-                            tower2place.hide();
-                            addObject(placedTowers[y1][x1], x2, y2);
-                            this.money -= placedTowers[y1][x1].cost;
-                            setTower = true;
-                        }
-                        // System.out.println("Turm plaziert: x=" + Integer.toString(x1) + ", y=" + Integer.toString(y1));
                     }
                 }
             }
@@ -77,7 +80,7 @@ public class Game extends World {
     public void act() {
         // setHP(hp-1);
         // setBackground("Maps\\Map1.png");
-        monCnt.setMoney(money+1);
+        moneyAnz.setText("x" + Integer.toString(money));
         money++;
         rundenAnz.setText("Runde " + Integer.toString(runde));
         runde++;
@@ -90,7 +93,7 @@ public class Game extends World {
         }
         if(placingTower) {
             if(addTower()) {
-                System.out.println("Turm wurde plaziert!");
+                // System.out.println("Turm wurde plaziert!");
                 placingTower = false;
                 removeObject(tower2place);
                 // verschT.hide();
@@ -106,7 +109,7 @@ public class Game extends World {
 
     private void prepare() {
         //setBackground("Maps\\Map1.png");
-        setPaintOrder(new Class[]{ActorV2.class, Tower.class, Virus.class, DisplayText.class, WaehrungsAnzeige.class, Map.class});
+        setPaintOrder(new Class[]{ActorV2.class, Tower.class, Virus.class, DisplayText.class, Map.class});
         map = new Map("Maps\\Map1.png", new Boolean[][] {
             {true, true, true, true, true, true, true, false, false, false, false, false, false, false},
             {true, true, true, true, true, true, true, true, false, false, false, false, false, false},
@@ -118,6 +121,8 @@ public class Game extends World {
             {true, false, true, false, true, true, false, false, false, false, true, false, true},
             {true, false, true, true, true, true, true, true, true, false, false, false, true},
             {true, false, true, true, true, true, true, true, true, true, true, true, true}
+        }, new int[][] {
+            {9, 1}, {5, 1}, {5, 3}, {2, 3}, {2, 6}, {7, 6}, {7, 9}, {8, 9}, {8, 11}, {3, 11}, {3, 12}
         });
         addObject(map, 480, 384);
         
@@ -127,18 +132,19 @@ public class Game extends World {
         money = 0;
         placedTowers = new Tower[10][13];
         placingTower = false;
-     
-        monCnt = new WaehrungsAnzeige();
-        addObject(monCnt, 500, 30);
-        
+
+        // Die obere Leiste
+        moneyIcon = new ActorV2("GUI\\Waehrung.png");
+        addObject(moneyIcon, 520, 24);
+        moneyAnz = new DisplayText("x0", new Font("Consolas", 16), 200);
+        addObject(moneyAnz, 600, 30);
         rundenAnz = new DisplayText("Runde 1", new Font("Consolas", 16), 200);
         addObject(rundenAnz, 700, 30);
 
         
         hps = new ActorV2[10];
         for(int i=0; i < 10; i++) {
-            hps[i] = new ActorV2();
-            hps[i].setImage("GUI\\Herz32px_1.png");
+            hps[i] = new ActorV2("GUI\\Herz32px_1.png");
             addObject(hps[i], 30+35*i, 30);
         }
         

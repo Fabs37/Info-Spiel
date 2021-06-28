@@ -1,9 +1,13 @@
 #BlueJ class context
 comment0.target=ActorV2
-comment1.params=t
-comment1.target=void\ setTransparency(int)
+comment1.params=imgPath
+comment1.target=ActorV2(java.lang.String)
 comment2.params=
-comment2.target=void\ hide()
-comment3.params=
-comment3.target=void\ show()
-numComments=4
+comment2.target=ActorV2()
+comment3.params=t
+comment3.target=void\ setTransparency(int)
+comment4.params=
+comment4.target=void\ hide()
+comment5.params=
+comment5.target=void\ show()
+numComments=6

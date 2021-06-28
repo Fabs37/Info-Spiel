@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Testtower extends Tower{
     public Testtower() {
         super();
-        cost = 300;
+        cost = 0;
     }
     public void act() 
     {
