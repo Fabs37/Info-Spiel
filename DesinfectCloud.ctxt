@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=DesinfectCloud
+comment1.params=x\ y\ actsToLive
+comment1.target=DesinfectCloud(int,\ int,\ int)
+comment2.params=
+comment2.target=double\ getDamage()
+comment3.params=
+comment3.target=void\ act()
+comment3.text=\ public\ void\ addedToWorld(World\ w)\ {\r\n\ \ \ \ \ \ \ \ System.out.println("DesinfCloud\ zu\ world\ geadded");\r\n}
+numComments=4

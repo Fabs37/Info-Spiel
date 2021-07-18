@@ -2,6 +2,14 @@
 comment0.target=Tower
 comment1.params=
 comment1.target=Tower()
-comment2.params=
-comment2.target=void\ act()
-numComments=3
+comment2.params=path
+comment2.target=Tower(java.lang.String)
+comment3.params=passive
+comment3.target=void\ setPassive(boolean)
+comment4.params=x\ y
+comment4.target=void\ setGridPos(int,\ int)
+comment5.params=
+comment5.target=void\ updateEfficiency()
+comment6.params=
+comment6.target=java.util.List\ getVirenInRange()
+numComments=7

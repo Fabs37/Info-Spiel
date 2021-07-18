@@ -1,0 +1,1 @@
+public abstract class Bullet extends ActorV2{}
