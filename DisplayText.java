@@ -25,7 +25,7 @@ public class DisplayText extends ActorV2 {
     }
 
     private GreenfootImage newImage(String txt, Font f) {
-        return new GreenfootImage((int) (txt.length()*f.getSize()*0.5625)+1, (int) (f.getSize()*1.3+1));
+        return new GreenfootImage((int) (txt.length()*f.getSize()*0.5625)+1, (int) (f.getSize()*1.5+1));
     }
 
     public void setFixWidth(int w) {
@@ -38,7 +38,7 @@ public class DisplayText extends ActorV2 {
         if(fixWidth == 0) {
             img = newImage(txt, f);
         } else {
-            img = new GreenfootImage(fixWidth, f.getSize()+1);
+            img = new GreenfootImage(fixWidth, (int) (f.getSize()*1.5+1));
         }
         
         // img.drawImage(new GreenfootImage("GUI\\Herz32px_1.png"), 0, 0);

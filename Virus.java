@@ -12,6 +12,7 @@ public abstract class Virus extends ActorV2{
     private int checkpointsPassed; // Gibt an, das wievielte Element von absPath anvisiert wird.
     private boolean madeDamage;
     private Game world;
+    protected double aktSpeed; // wird von Desinfi beeinflusst
 
     public Virus() {
         GreenfootImage img = getImage();
@@ -31,8 +32,8 @@ public abstract class Virus extends ActorV2{
     public void act() {
         try {
             turnTowards(absPath[checkpointsPassed][1], absPath[checkpointsPassed][0]);
-            move(speed);
-            this.dist += speed;
+            move(aktSpeed);
+            this.dist += aktSpeed;
             if(getX() == absPath[checkpointsPassed][1] && getY() == absPath[checkpointsPassed][0]) {
                 checkpointsPassed++;
             }
@@ -51,7 +52,10 @@ public abstract class Virus extends ActorV2{
         try {
             if(isTouching(DesinfectCloud.class)) {
                 this.hp -= DesinfectCloud.getDamage();
+                aktSpeed = speed * 0.6;
                 // System.out.println("Virus.act(): Schaden durch Desinfi: " + Double.toString(DesinfectCloud.getDamage()) + ", Aktuelle HP: " + Double.toString(this.hp));
+            } else {
+                aktSpeed = speed;
             }
         } catch (Exception e) {
             

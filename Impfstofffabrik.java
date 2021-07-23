@@ -14,8 +14,8 @@ public class Impfstofffabrik extends Tower {
         if(!passive) {
             aktCooldown--;
             if(aktCooldown < 1) {
-                updateEfficiency();
-                Game.changeMoney((int) (damage * efficiency));
+                // updateEfficiency();
+                Game.changeMoney((int) (damage));
                 aktCooldown = cooldown;
             }
         }

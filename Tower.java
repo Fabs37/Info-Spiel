@@ -2,14 +2,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List; import java.util.ArrayList;
 import java.lang.Math;
 import java.util.Arrays;
-public abstract class Tower extends ActorV2{
+public class Tower extends ActorV2{
     protected int xPos;
     protected int yPos;
     protected Game w;
     public int cost;
     public int range;
     protected boolean passive; // für die Teile in der Seitenleiste
-    // public Boolean gender;
     protected int cooldown; //Anzahl der acts, die es dauert, bis der Turm wieder schießt
     protected int aktCooldown;
     public double damage;
